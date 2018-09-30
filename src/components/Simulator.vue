@@ -96,6 +96,9 @@
               </v-btn>
             </v-card>
           </v-flex>
+          <v-btn fab dark class="btn-home" :title="titleCiclic" @click="goHome">
+            <v-icon dark>home</v-icon>
+          </v-btn>
         </v-layout>
       </v-container>
     </v-app>
@@ -200,6 +203,9 @@ export default {
       this.user.timeSimulator = 1
       this.user.valueResult = ''
       this.result = false
+    },
+    goHome () {
+      window.location.href = `https://www.ciclic.com.br/`
     }
   }
 }
@@ -318,5 +324,11 @@ export default {
   }
   .text-result{
     word-break: break-word;
+  }
+  .btn-home{
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    background-color: #E40066 !important;
   }
 </style>
