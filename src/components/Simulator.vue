@@ -99,6 +99,54 @@ export default {
       loading: false,
       reqFailed: ''
     }
+  },
+  methods: {
+    submit () {
+      const txJuros = '0.00517'
+
+      if (this.$refs.form.validate()) {
+        this.loading = true // Call screen loading when data is OK
+        // ------- Preparing data for API ------- //
+        let convertMonths = parseInt(this.user.timeSimulator) * 12
+        let payment = this.user.monthlyPayment
+        let rmvRS = payment.split('R$ ').join('') // Remove prefix add for mask money
+        let rmvDot = rmvRS.split('.').join('') // Remove dot  add for mask money
+        let rpcComma = rmvDot.replace(',', '.') // Change comma  for dot
+        let newPayment = rpcComma
+
+        let expr = `
+          {
+            "expr": [
+              "${newPayment} * (((1 + ${txJuros}) ^ ${convertMonths} - 1) / ${txJuros})"
+            ]
+          }
+        `
+        axios({
+          method: 'post',
+          url: 'http://api.mathjs.org/v4/',
+          data: expr
+        }).then(response => {
+          if (response.status === 200) { // Check status OK
+            this.reqFailed = false
+            this.user.valueResult = (parseFloat(response.data.result[0])).toFixed(2)
+            let rpcDot = this.user.valueResult.replace('.', ',')
+            let resultCurrency = rpcDot.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') // Put mask money in value
+            this.user.valueResult = resultCurrency
+            this.loading = false // Remove screen loading
+            this.result = true // Add second screen
+            if (this.user.timeSimulator !== 0 && this.user.timeSimulator > 1) {
+              this.user.timeSimulator = `${this.user.timeSimulator} anos`
+            } else {
+              if (this.user.timeSimulator === 1) {
+                this.user.timeSimulator = `${this.user.timeSimulator} ano`
+              }
+            }
+          } else {
+            this.reqFailed = true
+          }
+        })
+      }
+    }
   }
 }
 </script>
