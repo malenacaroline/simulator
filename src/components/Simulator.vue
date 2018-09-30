@@ -5,18 +5,54 @@
         <v-layout align-center justify-center>
           <v-flex xs12 sm8 md6 lg4>
             <v-card elevation-12 class="card">
+              <!-- Head Card -->
               <v-img class="logo"
                 aspect-ratio="4.75" :src='image.url'>
               </v-img>
               <div class="icon-arrow">
                 <i class="material-icons" color="blue lighten-5">
-                keyboard_arrow_down
+                  keyboard_arrow_down
                 </i>
-                <v-card-title primary-title>
-                  <h3 class="title-simulator">{{ title }}</h3>
-                  <span class="grey--text subtitle-simulator">{{ subtitle }}</span>
-                </v-card-title>
               </div>
+              <v-card-title primary-title>
+                <h3 class="title-simulator">{{ title }}</h3>
+                <span class="grey--text subtitle-simulator">{{ subtitle }}</span>
+              </v-card-title>
+              <!-- Form Data -->
+              <v-form class="form" ref="form" v-model="valid" v-if="!result && !loading" lazy-validation>
+                <!-- Input Name -->
+                <v-text-field
+                  v-model="user.name"
+                  :rules="nameRules"
+                  label="Nome"
+                  @keyup = onlyString()>
+                </v-text-field>
+                <!-- Input Monthly Payment -->
+                <v-text-field
+                  v-model="user.monthlyPayment"
+                  v-money="money"
+                  label="Mensalidade"
+                  :rules="monthlyRules">
+                </v-text-field>
+                <!-- Input Time -->
+                <span>
+                  <font class="label-start-time">Tempo</font><br>
+                </span>
+                <v-flex d-inline-flex class="flex-time">
+                  <v-slider class="slider"
+                    v-model="user.timeSimulator"
+                    color="deep-purple darken-4"
+                    min="1"
+                    max="10"
+                  ></v-slider>
+                  <font class="time-simulator" v-if="user.timeSimulator == 1">({{ user.timeSimulator }} ano)</font>
+                  <font class="time-simulator" v-if="user.timeSimulator > 1">({{ user.timeSimulator }} anos)</font>
+                </v-flex>
+                <!-- Btn Submit -->
+                <v-btn round color="green accent-3" dark @click="submit()">
+                  <i class="material-icons">mood</i>&nbsp;&nbsp;Simular
+                </v-btn>
+              </v-form>
             </v-card>
           </v-flex>
         </v-layout>
@@ -37,7 +73,31 @@ export default {
       subtitle: 'Na Ciclic seu sonho rende mais que na poupança',
       image: {
         url: require('../assets/img/ciclic.jpeg')
-      }
+      },
+      valid: true,
+      user: {
+        name: '',
+        monthlyPayment: 'R$ 0,00',
+        timeSimulator: 1,
+        valueResult: ''
+      },
+      money: {
+        decimal: ',',
+        thousands: '.',
+        prefix: 'R$ ',
+        precision: 2,
+        masked: false
+      },
+      nameRules: [
+        v => !!v || 'Xiii, parece que você esqueceu de digitar o seu nome aqui :)',
+        v => (v && v.length >= 3) || 'Psiu, o nome precisa ter pelo menos 3 letras, tá?! :)'
+      ],
+      monthlyRules: [
+        v => (v !== 'R$ 0,00' && v !== 'R$ 0.00') || 'Psiu, a sua mensalidade tem que ser maior que 0 :)'
+      ],
+      result: false,
+      loading: false,
+      reqFailed: ''
     }
   }
 }
@@ -71,6 +131,7 @@ export default {
     padding: 7px 7px 0px 7px;
   }
   .v-card__title{
+    display: block;
     padding: 0;
   }
   .subtitle-simulator{
@@ -78,5 +139,37 @@ export default {
     margin-right: auto;
     margin-bottom: 30px;
     word-break: break-word;
+  }
+  .form {
+    padding: 0 20px 20px 20px;
+  }
+  .v-text-field{
+    color: #1976D2;
+  }
+  .label-start-time{
+    float: left;
+    font-size: 12px;
+    color: rgba(0,0,0,.54);
+  }
+  .flex-time{
+    width: 100%;
+  }
+  .slider{
+    width: 75%;
+    margin-top: 0;
+  }
+  .time-simulator{
+    color: #324376;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+  .v-btn{
+    font-family: 'Montserrat', sans-serif;
+    background-color: #324376 !important;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>
