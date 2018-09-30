@@ -34,5 +34,12 @@ export default {
 </script>
 
 <style scoped>
-
+  .card {
+    height: 510px;
+    margin-top: 30px;
+    margin-bottom: 23px;
+  }
+  .logo{
+    transform: scale(0.6);
+  }
 </style>
