@@ -4,6 +4,11 @@
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
           <v-flex xs12 sm8 md6 lg4>
+            <v-card elevation-12 class="card">
+              <v-img class="logo"
+                aspect-ratio="4.75" :src='image.url'>
+              </v-img>
+            </v-card>
           </v-flex>
         </v-layout>
       </v-container>
@@ -19,7 +24,10 @@ export default {
   name: 'Simulator',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Simulador',
+      image: {
+        url: require('../assets/img/ciclic.jpeg')
+      }
     }
   }
 }
