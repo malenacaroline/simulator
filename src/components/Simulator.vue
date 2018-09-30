@@ -193,6 +193,13 @@ export default {
           }
         })
       }
+    },
+    reset () {
+      this.user.name = ''
+      this.user.monthlyPayment = 'R$ 0,00'
+      this.user.timeSimulator = 1
+      this.user.valueResult = ''
+      this.result = false
     }
   }
 }
@@ -266,6 +273,19 @@ export default {
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+  .loading{
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  .loading .v-progress-circular{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
   }
   .result{
     padding: 20px 30px 20px 30px;
