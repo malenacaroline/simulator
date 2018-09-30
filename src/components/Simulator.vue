@@ -118,6 +118,7 @@ export default {
     return {
       title: 'Simulador',
       subtitle: 'Na Ciclic seu sonho rende mais que na poupança',
+      titleCiclic: 'Vem conhecer a Ciclic!',
       image: {
         url: require('../assets/img/ciclic.jpeg')
       },
