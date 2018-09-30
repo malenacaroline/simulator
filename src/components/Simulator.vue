@@ -59,6 +59,41 @@
                   <v-progress-circular indeterminate color="primary"></v-progress-circular>
                 </v-flex>
               </div>
+              <!-- Screen with result the API -->
+              <div v-if="result && !loading" class="result">
+                <v-flex d-flex xs12>
+                  <v-card class="card-result">
+                    <div class="content-result">
+                      <div class="icon-result">
+                        <i class="material-icons">done</i>
+                      </div>
+                      <h2 class="title-result"> Olá {{ user.name }},</h2>
+                      <h2 class="text-result">Juntando {{ user.monthlyPayment }} todo mês,
+                        você terá R$ {{ user.valueResult }} em {{ user.timeSimulator }}</h2>
+                    </div>
+                  </v-card>
+                </v-flex>
+              </div>
+              <v-btn v-if="result && !loading" round color="primary" dark @click="reset()">
+                <i class="material-icons">mood</i>&nbsp;&nbsp;Simular Novamente
+              </v-btn>
+              <!-- Screen when Requisition failed-->
+              <div v-if="reqFailed" class="result">
+                <v-flex d-flex xs12>
+                  <v-card class="card-result">
+                    <div class="content-result">
+                      <div class="icon-result">
+                        <i class="material-icons">done</i>
+                      </div>
+                      <h2 class="title-result"> Ops <font class="username">{{ user.name }}</font>!</h2>
+                      <h2 class="text-result">Algo deu errado. Por gentileza, tente novamente mais tarde.</h2>
+                    </div>
+                  </v-card>
+                </v-flex>
+              </div>
+              <v-btn v-if="result && !loading && reqFailed" round color="primary" dark @click="reset()">
+                <i class="material-icons">mood</i>&nbsp;&nbsp;Simular Novamente
+              </v-btn>
             </v-card>
           </v-flex>
         </v-layout>
@@ -231,5 +266,37 @@ export default {
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+  .result{
+    padding: 20px 30px 20px 30px;
+  }
+  .card-result{
+    margin-top: -12px;
+    background-color: rgb(245,245,245);
+    height: auto;
+  }
+  .content-result{
+    padding: 20px 20px 30px 20px;
+  }
+  .content-result h2{
+    font-weight: 400;
+    font-size: 17px;
+    color: #324376;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .icon-result i{
+    font-size: 50px;
+    font-weight: bold;
+    color: #324376;
+  }
+  .title-result{
+    margin-bottom: 10px;
+  }
+  .title-result h2{
+    font-size: 22px;
+    text-transform: capitalize;
+  }
+  .text-result{
+    word-break: break-word;
   }
 </style>
