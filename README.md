@@ -18,7 +18,7 @@ After load application at https://localhost:8080
 # Simulator de Investimentos
 > Simulador de Investimentos com Vue Js 2. 
     O projeto consiste em uma simulação de investimento utilizando juros composto.
-#  Run Project
+#  Executando o Projeto
 ```
 Faça o download do projeto e depois instale as dependências:
 $ npm install
