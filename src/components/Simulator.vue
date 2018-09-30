@@ -53,6 +53,12 @@
                   <i class="material-icons">mood</i>&nbsp;&nbsp;Simular
                 </v-btn>
               </v-form>
+              <!-- Screen Loading -->
+              <div v-if="!result && loading" class="loading" align-center justify-center>
+                <v-flex>
+                  <v-progress-circular indeterminate color="primary"></v-progress-circular>
+                </v-flex>
+              </div>
             </v-card>
           </v-flex>
         </v-layout>
