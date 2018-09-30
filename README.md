@@ -7,13 +7,16 @@
 Download the project and install the dependencies:
 $ npm install
 
-After load at localhost:8080
+Load local serve 
 $ npm run start
+
+After load application at https://localhost:8080
+
 
 ```
 
 # Simulator de Investimentos
-> Simulador de Investimenros com Vue Js 2
+> Simulador de Investimentos com Vue Js 2
     O projeto consiste em uma simulação de investimento utilizando juros composto.
 #  Run Project
 ```
