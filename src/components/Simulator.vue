@@ -25,7 +25,7 @@
                   v-model="user.name"
                   :rules="nameRules"
                   label="Nome"
-                  @keyup = onlyString()>
+                  @keyup = onlyLetter()>
                 </v-text-field>
                 <!-- Input Monthly Payment -->
                 <v-text-field
@@ -104,6 +104,9 @@ export default {
     }
   },
   methods: {
+    onlyLetter () {
+      this.user.name = this.user.name.replace(/[^a-zA-Z.\s]/g, '')
+    },
     submit () {
       const txJuros = '0.00517'
 
