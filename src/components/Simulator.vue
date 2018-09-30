@@ -101,6 +101,9 @@
           </v-btn>
         </v-layout>
       </v-container>
+      <span class="made">
+        Made with <i class="fas fa-heart"></i> by Malena Caroline
+      </span>
     </v-app>
   </div>
 </template>
@@ -213,6 +216,9 @@ export default {
 </script>
 
 <style scoped>
+  .container {
+    padding-bottom: 0;
+  }
   .card {
     height: 510px;
     margin-top: 30px;
@@ -331,5 +337,14 @@ export default {
     bottom: 20px;
     right: 40px;
     background-color: #E40066 !important;
+  }
+  .made{
+    display: block;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+  }
+  .fa-heart{
+    color: #b71c1c;
   }
 </style>
