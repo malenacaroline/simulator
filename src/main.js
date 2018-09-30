@@ -9,7 +9,7 @@ Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 
-Vue.create({
+new Vue({
   el: '#app',
   router,
   components: { App },
