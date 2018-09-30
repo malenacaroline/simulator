@@ -1,10 +1,12 @@
 <template>
   <div>
-    
   </div>
 </template>
 
 <script>
+import { VMoney } from 'v-money'
+import axios from 'axios'
+
 export default {
   name: 'Simulator',
   data () {
