@@ -1,6 +1,6 @@
 # Investment Simulator
-> Investment Simulator with Vue Js 2
-    The project consists of an investment simulation using compound interest.
+> Investment Simulator with Vue Js 2. 
+The project consists of an investment simulation using compound interest.
 
 # Run Project
 ```
@@ -16,7 +16,7 @@ After load application at https://localhost:8080
 ```
 
 # Simulator de Investimentos
-> Simulador de Investimentos com Vue Js 2
+> Simulador de Investimentos com Vue Js 2. 
     O projeto consiste em uma simulação de investimento utilizando juros composto.
 #  Run Project
 ```
