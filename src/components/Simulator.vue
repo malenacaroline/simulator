@@ -347,4 +347,17 @@ export default {
   .fa-heart{
     color: #b71c1c;
   }
+  @media screen and (min-width: 961px) and (max-width: 1264){
+    .content-result h2{
+      font-size: 15px;
+    }
+  }
+  @media screen and (max-width: 600px){
+    .time-simulator{
+      font-size: 15px;
+    }
+    .slider{
+      width: 65%;
+    }
+  }
 </style>
