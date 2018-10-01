@@ -7,11 +7,11 @@ import '@mdi/font/css/materialdesignicons.css'
 
 Vue.use(Vuetify)
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-new Vue({
+(() => new Vue({
   el: '#app',
   router,
   components: { App },
   template: '<App/>'
-})
+}))()
